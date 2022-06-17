@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PostController::class, 'index'])->name('home');
 
+Route::controller(PostController::class)->group(function(){
+    Route::get('posts/{post}', 'show')->name('posts.show');
+    Route::get('category/{category}', 'category')->name('posts.category');
+    Route::get('tags/{tag}', 'tag')->name('posts.tag');
+});
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),

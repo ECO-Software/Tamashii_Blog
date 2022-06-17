@@ -8,11 +8,11 @@
                     <div class="w-full h-full px-8 flex flex-col justify-center">
                         <div>
                             @foreach ($item->tags as $tag)
-                                <a class="tag tag-{{ $tag->color->name }}" href="">{{ $tag->name }}</a>
+                                <a class="tag tag-{{ $tag->color->name }} mb-1.5" href="{{ route('posts.tag', $tag) }}">{{ $tag->name }}</a>
                             @endforeach
                         </div>
                         <h1 class="text-4xl text-white leading-8 font-bold">
-                            <a href="">{{ $item->title }} </a>
+                            <a href="{{ route('posts.show', $item) }}">{{ $item->title }} </a>
                         </h1>
                     </div>
                 </article>
