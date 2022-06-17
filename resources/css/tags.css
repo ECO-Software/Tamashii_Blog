@@ -1,0 +1,91 @@
+.tag{
+    @apply inline-block px-3 h-6 text-white rounded-full;
+}
+
+.tag-slate{
+    @apply bg-slate-600;
+}
+
+.tag-gray{
+    @apply bg-gray-600;
+}
+
+.tag-zinc{
+    @apply bg-zinc-600;
+}
+
+.tag-neutral{
+    @apply bg-neutral-600;
+}
+
+.tag-stone{
+    @apply bg-stone-600;
+}
+
+.tag-red{
+    @apply bg-red-600;
+}
+
+.tag-orange{
+    @apply bg-orange-600;
+}
+
+.tag-amber{
+    @apply bg-amber-600;
+}
+
+.tag-lime{
+    @apply bg-lime-600;
+}
+
+.tag-yellow{
+    @apply bg-yellow-600;
+}
+
+.tag-green{
+    @apply bg-green-600;
+}
+
+.tag-emerald{
+    @apply bg-emerald-600;
+}
+
+.tag-teal{
+    @apply bg-teal-600;
+}
+
+.tag-cyan{
+    @apply bg-cyan-600;
+}
+
+.tag-sky{
+    @apply bg-sky-600;
+}
+
+.tag-blue{
+    @apply bg-blue-600;
+}
+
+.tag-indigo{
+    @apply bg-indigo-600;
+}
+
+.tag-violet{
+    @apply bg-violet-600;
+}
+
+.tag-purple{
+    @apply bg-purple-600;
+}
+
+.tag-fuchsia{
+    @apply bg-fuchsia-600;
+}
+
+.tag-pink{
+    @apply bg-pink-600;
+}
+
+.tag-rose{
+    @apply bg-rose-600;
+}

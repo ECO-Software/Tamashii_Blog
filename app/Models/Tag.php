@@ -18,4 +18,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class);
     }
+
+    // One to Many with Color
+    public function color(){
+        return $this->belongsTo(Color::class);
+    }
 }
