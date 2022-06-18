@@ -9,6 +9,12 @@ class Tag extends Model
 {
     use HasFactory;
 
+    // Friendly URL
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /*************************************************
      *                Relationships                  *
      *************************************************/

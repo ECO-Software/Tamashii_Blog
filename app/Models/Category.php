@@ -9,6 +9,15 @@ class Category extends Model
 {
     use HasFactory;
 
+    // mass assignment
+    protected $fillable = ['name', 'slug'];
+
+    // Friendly URL
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /*************************************************
      *                Relationships                  *
      *************************************************/

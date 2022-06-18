@@ -1,6 +1,7 @@
 <?php
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\admin\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+Route::resource('categories', CategoryController::class)->names('admin.categories');
