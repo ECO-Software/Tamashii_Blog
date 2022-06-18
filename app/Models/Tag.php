@@ -9,6 +9,9 @@ class Tag extends Model
 {
     use HasFactory;
 
+    // Mass assignment
+    protected $fillable = ['name', 'slug', 'color_id'];
+
     // Friendly URL
     public function getRouteKeyName()
     {

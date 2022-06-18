@@ -2,6 +2,7 @@
 use App\Http\Controllers\admin\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\admin\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,4 @@ use App\Http\Controllers\admin\CategoryController;
 
 Route::get('/', [AdminController::class, 'index'])->name('admin.index');
 Route::resource('categories', CategoryController::class)->names('admin.categories');
+Route::resource('tags', TagController::class)->names('admin.tags');

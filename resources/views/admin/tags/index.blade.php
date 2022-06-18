@@ -3,7 +3,7 @@
 @section('title', 'Tamashii Blog')
 
 @section('content_header')
-    <h1>Lista de categorías</h1>
+    <h1>Lista de etiquetas</h1>
 @stop
 
 @section('content')
@@ -12,13 +12,12 @@
             {{ session('success') }}
         </div>
     @endif
-
     <div class="card">
         <div class="card-header">
             <div class="card-tools">
-                <a href="{{ route('admin.categories.create') }}" class="btn btn-success btn-sm">
+                <a href="{{ route('admin.tags.create') }}" class="btn btn-success btn-sm">
                     <i class="fas fa-plus"></i>
-                    Añadir
+                    Nueva etiqueta
                 </a>
             </div>
         </div>
@@ -32,20 +31,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($categories as $category)
+                    @foreach ($tags as $tag)
                         <tr>
-                            <td>{{ $category->id }}</td>
-                            <td>{{ $category->name }}</td>
+                            <td>{{ $tag->id }}</td>
+                            <td>{{ $tag->name }}</td>
                             <td width="10px">
-                                <a href="{{ route('admin.categories.edit', $category) }}"
-                                    class="btn btn-primary">Editar</a>
+                                <a href="{{ route('admin.tags.edit', $tag) }}" class="btn btn-info">
+                                    Editar
+                                </a>
                             </td>
                             <td width="10px">
-                                <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-danger" type="submit">Eliminar</button>
-                                </form>
+                                {{ Form::open(['route' => ['admin.tags.destroy', $tag], 'method' => 'DELETE']) }}
+                                <button class="btn btn-danger">
+                                    Eliminar
+                                </button>
+                                {{ Form::close() }}
                             </td>
                         </tr>
                     @endforeach
@@ -53,7 +53,6 @@
             </table>
         </div>
     </div>
-
 @stop
 
 @section('css')
