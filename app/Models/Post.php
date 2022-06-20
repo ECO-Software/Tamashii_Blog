@@ -9,6 +9,9 @@ class Post extends Model
 {
     use HasFactory;
 
+    // Assign the guarded property to the Post model.
+    protected $guarded = ['id', 'created_at', 'updated_at'];
+
     // Friendly URL
     public function getRouteKeyName()
     {

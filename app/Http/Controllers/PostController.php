@@ -11,14 +11,16 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('status', 1)->paginate(8);
+        $posts = Post::where('status', '1')->latest('id')->paginate(8);
         return view('posts.index', compact('posts'));
     }
 
     public function show(Post $post)
     {
+        $this->authorize('published', $post);
         $related = Post::where('category_id', $post->category_id)
             ->where('id', '!=', $post->id)
+            ->where('status', '1')
             ->latest('id')
             ->take(4)
             ->get();
@@ -27,13 +29,13 @@ class PostController extends Controller
 
     public function category(Category $category)
     {
-        $posts = Post::where('category_id', $category->id)->where('status', 1)->latest('id')->paginate(5);
+        $posts = Post::where('category_id', $category->id)->where('status', '1')->latest('id')->paginate(5);
         return view('posts.category', compact('posts', 'category'));
     }
 
     public function tag(Tag $tag)
     {
-       $posts = $tag->posts()->where('status', 1)->latest('id')->paginate(5);
+       $posts = $tag->posts()->where('status', '1')->latest('id')->paginate(5);
         return view('posts.tag', compact('posts', 'tag'));
     }
 

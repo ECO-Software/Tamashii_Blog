@@ -9,6 +9,9 @@ class Image extends Model
 {
     use HasFactory;
 
+    // Assign the fillable property to the Image model.
+    protected $fillable = ['url'];
+
     // Friendly URL
     public function getRouteKeyName()
     {

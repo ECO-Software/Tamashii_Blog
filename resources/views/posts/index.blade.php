@@ -4,7 +4,7 @@
             @foreach ($posts as $item)
                 <article
                     class="w-full h-80 bg-cover bg-center rounded-md @if ($loop->first) col-span-1 sm:col-span-2 @endif"
-                    style="background-image: url({{ Storage::url($item->image->url) }})">
+                    style="background-image: url(@if($item->image){{ Storage::url($item->image->url) }}@else{{ Storage::url("posts/notfound.png") }} @endif)">
                     <div class="w-full h-full px-8 flex flex-col justify-center">
                         <div>
                             @foreach ($item->tags as $tag)
