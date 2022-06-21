@@ -39,7 +39,7 @@ class PostRequest extends FormRequest
             ]);
         }
 
-        if(! $post->image){
+        if(! isset($post->image)){
             $rules = array_merge($rules,[   
                 'image' => "required|image|max:2048",
             ]);

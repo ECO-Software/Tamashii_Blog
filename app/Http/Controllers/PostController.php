@@ -5,13 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Cache;
 
 class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::where('status', '1')->latest('id')->paginate(8);
+        // Add pagination in variable
+        if(request()->page){
+            $key = 'posts' . request()->page; // If exist page, add page to key
+        }else{
+            $key = 'posts'; // If not exist page, add key without page
+        }
+        // Ask if the cache posts is empty
+        if (Cache::has($key)) {
+            $posts = Cache::get($key); // Get the posts from the cache
+        } else {
+            $posts = Post::where('status', '1')->latest('id')->paginate(8); // Get the posts from the database
+            Cache::put($key, $posts); // Put the posts in the cache
+        }
         return view('posts.index', compact('posts'));
     }
 
@@ -35,8 +48,7 @@ class PostController extends Controller
 
     public function tag(Tag $tag)
     {
-       $posts = $tag->posts()->where('status', '1')->latest('id')->paginate(5);
+        $posts = $tag->posts()->where('status', '1')->latest('id')->paginate(5);
         return view('posts.tag', compact('posts', 'tag'));
     }
-
 }

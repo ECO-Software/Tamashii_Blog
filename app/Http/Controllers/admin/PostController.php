@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\admin\PostRequest;
 use App\Models\Post;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
@@ -63,6 +64,7 @@ class PostController extends Controller
             ]);
         }
         $post->tags()->sync($request->tags); // Sync the tags with the post
+        Cache::flush();
         return redirect()->route('admin.posts.edit', compact('post', 'categories', 'tags'))->with('success', 'Post creado correctamente.');
     }
 
@@ -128,6 +130,7 @@ class PostController extends Controller
             }
         }
         $post->tags()->sync($request->tags); 
+        Cache::flush();
         return redirect()->route('admin.posts.edit', compact('post', 'categories', 'tags'))->with('success', 'Post actualizado correctamente');
     }
 
@@ -141,6 +144,7 @@ class PostController extends Controller
     {
         $this->authorize('author', $post);
         $post->delete();
+        Cache::flush();
         return redirect()->route('admin.posts.index')->with('success', 'Post eliminado correctamente');
     }
 }
