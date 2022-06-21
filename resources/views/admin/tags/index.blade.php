@@ -13,21 +13,25 @@
         </div>
     @endif
     <div class="card">
-        <div class="card-header">
-            <div class="card-tools">
-                <a href="{{ route('admin.tags.create') }}" class="btn btn-success btn-sm">
-                    <i class="fas fa-plus"></i>
-                    Nueva etiqueta
-                </a>
+        @can('admin.tags.create')
+            <div class="card-header">
+                <div class="card-tools">
+                    <a href="{{ route('admin.tags.create') }}" class="btn btn-success btn-sm">
+                        <i class="fas fa-plus"></i>
+                        Nueva etiqueta
+                    </a>
+                </div>
             </div>
-        </div>
+        @endcan
         <div class="card-body">
             <table class="table table-striped">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Nombre</th>
-                        <th colspan="2"></th>
+                        @can(['admin.tags.edit', 'admin.tags.destroy'])
+                            <th colspan="2"></th>
+                        @endcan
                     </tr>
                 </thead>
                 <tbody>
@@ -35,18 +39,22 @@
                         <tr>
                             <td>{{ $tag->id }}</td>
                             <td>{{ $tag->name }}</td>
-                            <td width="10px">
-                                <a href="{{ route('admin.tags.edit', $tag) }}" class="btn btn-info">
-                                    Editar
-                                </a>
-                            </td>
-                            <td width="10px">
-                                {{ Form::open(['route' => ['admin.tags.destroy', $tag], 'method' => 'DELETE']) }}
-                                <button class="btn btn-danger">
-                                    Eliminar
-                                </button>
-                                {{ Form::close() }}
-                            </td>
+                            @can('admin.tags.edit')
+                                <td width="10px">
+                                    <a href="{{ route('admin.tags.edit', $tag) }}" class="btn btn-info">
+                                        Editar
+                                    </a>
+                                </td>
+                            @endcan
+                            @can('admin.tags.destroy')
+                                <td width="10px">
+                                    {{ Form::open(['route' => ['admin.tags.destroy', $tag], 'method' => 'DELETE']) }}
+                                    <button class="btn btn-danger">
+                                        Eliminar
+                                    </button>
+                                    {{ Form::close() }}
+                                </td>
+                            @endcan
                         </tr>
                     @endforeach
                 </tbody>

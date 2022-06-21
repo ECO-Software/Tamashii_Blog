@@ -19,7 +19,11 @@
                     <thead>
                         <th>ID</th>
                         <th>Título</th>
-                        <th colspan="3"></th>
+                        @can(['admin.posts.edit', 'admin.posts.destroy'])
+                            <th colspan="3"></th>
+                        @else
+                            <th></th>
+                        @endcan
                     </thead>
                     <tbody>
                         @foreach ($posts as $post)
@@ -30,15 +34,19 @@
                                     <a href="{{ route('admin.posts.show', $post) }}"
                                         class="btn btn-sm btn-primary">Ver</a>
                                 </td>
-                                <td width="10px">
-                                    <a href="{{ route('admin.posts.edit', $post) }}"
-                                        class="btn btn-sm btn-warning">Editar</a>
-                                </td>
-                                <td width="10px">
-                                    {!! Form::open(['route' => ['admin.posts.destroy', $post], 'method' => 'DELETE']) !!}
-                                    <button class="btn btn-sm btn-danger">Eliminar</button>
-                                    {!! Form::close() !!}
-                                </td>
+                                @can('admin.posts.edit')
+                                    <td width="10px">
+                                        <a href="{{ route('admin.posts.edit', $post) }}"
+                                            class="btn btn-sm btn-warning">Editar</a>
+                                    </td>
+                                @endcan
+                                @can('admin.posts.destroy')
+                                    <td width="10px">
+                                        {!! Form::open(['route' => ['admin.posts.destroy', $post], 'method' => 'DELETE']) !!}
+                                        <button class="btn btn-sm btn-danger">Eliminar</button>
+                                        {!! Form::close() !!}
+                                    </td>
+                                @endcan
                             </tr>
                         @endforeach
                     </tbody>

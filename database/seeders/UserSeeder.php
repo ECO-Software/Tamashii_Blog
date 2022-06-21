@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'name' => 'Andrés Sevillano Molina',
             'email' => 'andres.sevillano.net@gmail.com',
             'password' => bcrypt('hinata13'),
-        ]);
+        ])->syncRoles(['admin', 'sa']);
 
         User::factory(10)->create();
     }

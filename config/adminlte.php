@@ -248,32 +248,58 @@ return [
         ],
         [
             'text'        => 'Dashboard',
-            'route'         => 'admin.index',
+            'route'       => 'admin.index',
             'icon'        => 'fas fa-tachometer-alt fa-fw',
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'Administrador'],
+        [
+            'header' => 'Root',
+            'can' => 'admin.users.index'
+        ],
+        [
+            'text' => 'Usuarios',
+            'route'  => 'admin.users.index',
+            'icon' => 'fas fa-users fa-fw',
+            'can' => 'admin.users.index'
+        ],
+        [
+            'text' => 'Roles y privilegios',
+            'route'  => 'admin.roles.index',
+            'icon' => 'fas fa-user-tag fa-fw',
+            'can' => 'admin.roles.index'
+        ],
+        [
+            'header' => 'Administrador',
+            'can' => 'admin.categories.create'
+        ],
         [
             'text' => 'Categorías',
             'route'  => 'admin.categories.index',
             'icon' => 'fab fa-fw fa-buffer',
+            'can' => 'admin.categories.index'
         ],
         [
             'text' => 'Etiquetas',
             'route'  => 'admin.tags.index',
             'icon' => 'far fa-fw fa-bookmark',
+            'can' => 'admin.tags.index'
         ],
-        ['header' => 'Opciones de blog'],
+        [
+            'header' => 'Opciones de blog',
+            'can' => 'admin.posts.index'
+        ],
         [
             'text' => 'Listado de posts',
             'route'  => 'admin.posts.index',
             'icon' => 'fas fa-fw fa-list',
+            'can' => 'admin.posts.index'
         ],
         [
             'text' => 'Crear post',
             'route'  => 'admin.posts.create',
             'icon' => 'fas fa-fw fa-plus',
+            'can' => 'admin.posts.create'
         ]
         // [
         //     'text' => 'Posts',
